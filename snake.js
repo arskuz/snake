@@ -17,8 +17,8 @@ apple.y = 5
 function apple_gen(){
   let noap = 1
   while(noap==1){
-    apple.x=random_gen(1,MAP_SIZE)
-    apple.y=random_gen(1,MAP_SIZE)
+    apple.x=random_gen(1,MAP_SIZE-1)
+    apple.y=random_gen(1,MAP_SIZE-1)
   if(check_solids(apple.x,apple.y)==0)
     {noap = 0}
   }
@@ -108,7 +108,7 @@ function snake_move(){
   else
       {snake_head.x++}
 
-  if(snake_head.x>MAP_SIZE||snake_head.y>MAP_SIZE||snake_head.x==0||snake_head.y==0)
+  if(snake_head.x==MAP_SIZE||snake_head.y==MAP_SIZE||snake_head.x==0||snake_head.y==0)
     {fail=1}
   if(check_solids(snake_head.x,snake_head.y)==1)
     {fail=1}
@@ -128,17 +128,17 @@ function update_map(){
     kill_solids()
   }
 
-  for(let j = 1; j<=MAP_SIZE; j++) {
-    for(let i = 1; i<=MAP_SIZE; i++) {
+  for(let j = 1; j<MAP_SIZE; j++) {
+    for(let i = 1; i<MAP_SIZE; i++) {
       if(i==snake_head.x&&j==snake_head.y)
-        {div.innerHTML+="<font style='mono'>S</font>"}
+        {div.innerHTML+="S"}
       else if(i==apple.x&&j==apple.y)
-        {div.innerHTML+="<font style='mono'>♦</font>"}
+        {div.innerHTML+="♦"}
       else if(check_solids(i,j)==1)
-        {div.innerHTML+="<font style='mono'>S</font>"}
+        {div.innerHTML+="S"}
       else
-        {div.innerHTML+="<font style='mono'>_</font>"}
-      if(i==MAP_SIZE)
+        {div.innerHTML+="_"}
+      if(i==MAP_SIZE-1)
         {div.innerHTML+='<br />'}
 
     }
