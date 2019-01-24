@@ -95,6 +95,9 @@ function rotate(newdir){
 var div = document.createElement('div')
 document.body.appendChild(div)
 
+div.style.cssText="font-family: monospace; \
+";
+
 function snake_move(){
   if(snake_head.orient==8)
       {snake_head.y--}
@@ -128,20 +131,20 @@ function update_map(){
   for(let j = 1; j<=MAP_SIZE; j++) {
     for(let i = 1; i<=MAP_SIZE; i++) {
       if(i==snake_head.x&&j==snake_head.y)
-        {div.innerHTML+="S"}
+        {div.innerHTML+="<font style='mono'>S</font>"}
       else if(i==apple.x&&j==apple.y)
-        {div.innerHTML+="♦"}
+        {div.innerHTML+="<font style='mono'>♦</font>"}
       else if(check_solids(i,j)==1)
-        {div.innerHTML+="S"}
+        {div.innerHTML+="<font style='mono'>S</font>"}
       else
-        {div.innerHTML+="_"}
+        {div.innerHTML+="<font style='mono'>_</font>"}
       if(i==MAP_SIZE)
         {div.innerHTML+='<br />'}
-
 
     }
   }
 }
+
 
 add_listeners()
 
